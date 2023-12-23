@@ -1,0 +1,70 @@
+.dayweather {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.weather-report {
+
+    margin-left: 20px;
+    width: 350px;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px #725c5ca7;
+}
+
+.day-weather {
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    overflow-x: auto;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.day p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    user-select: none;
+    width: 60px;
+    text-align: center;
+
+}
+
+.weather-report h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.dayweather h3 {
+    font-size: 15px;
+}
+
+hr {
+    width: 90%;
+}
+
+::-webkit-scrollbar {
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+.day {
+    display: flex;
+    padding: 5px;
+
+    align-items: center;
+}
+
+.day svg {
+    width: 25px;
+    height: 25px;
+}
