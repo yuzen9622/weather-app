@@ -1,26 +1,43 @@
 import './Weathereport.css'
 import DayWeatherIcon from './dayweathericon';
 import Dayweather from './dayweather';
-import { useEffect } from 'react';
-const Weathereport = ({ enlocation, twlocation }) => {
+import { useEffect, useState } from 'react';
+import Threehour from './hour3';
+const Weathereport = ({ locationid, twlocation, townlocation }) => {
+    const [locationname, setlocaton] = useState([]);
+    const [Town, seTown] = useState('')
+    useEffect(() => {
 
+    }, [locationid])
     return (
         <div className="weather-report">
             <h1>{twlocation}</h1>
-            <div className="title">
-                <h3>今日天氣預報</h3>
-                <hr />
-            </div>
-            <div className="dayweather">
 
-                <div className="day-weather">
-                    <Dayweather enlocation={enlocation} twlocation={twlocation} />
+
+            <div className="h36weather">
+                <div className="day3weather">
+                    <div className="title">
+                        <h3>{townlocation}逐3小時天氣</h3>
+                    </div>
+                    <div className="day-weather">
+                        <Threehour location={locationid} town={townlocation} />
+                    </div>
                 </div>
-            </div>
-            <div className="3dayweather">
+
+                <div className="dayweather">
+                    <div className="title">
+                        <h3>36小時天氣預報</h3>
+
+                    </div>
+                    <div className="day-weather">
+                        <Dayweather enlocation={twlocation} />
+                    </div>
+
+                </div>
 
             </div>
-        </div>
+
+        </div >
     )
 
 

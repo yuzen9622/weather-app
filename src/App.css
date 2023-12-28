@@ -19,11 +19,25 @@ body {
   flex-direction: column;
 }
 
-.location select {
+.wx {
+  width: 100px;
+  height: 100px;
+}
+
+#secondSelect {
+
+  outline: none;
+  margin-bottom: 10px;
+  font-size: 30px;
+  border: none;
+
+}
+
+#location {
   font-size: 40px;
   border: none;
   width: 150px;
-  border-bottom: 2px solid #333;
+
   outline: none;
   margin-bottom: 10px;
 }

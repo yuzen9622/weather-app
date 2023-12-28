@@ -2,48 +2,79 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    background-color: #D3D3D3;
     overflow-x: auto;
+    margin-top: 10px;
+    border-radius: 15px;
+    height: 100%;
+
 }
 
 .weather-report {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-left: 20px;
     width: 350px;
+    height: 380px;
+    overflow-y: scroll;
     background-color: #fff;
     box-shadow: 5px 5px 5px #725c5ca7;
 }
 
 .day-weather {
+
     cursor: pointer;
     z-index: 2;
     display: flex;
     overflow-x: auto;
+    margin-bottom: 20px;
 }
 
 .title {
     display: flex;
+    color: #fff;
     flex-direction: column;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #D3D3D3;
+
+}
+
+h2,
+h1 {
+    background-color: #fff;
+    text-align: center;
 }
 
 .day p {
+    font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     user-select: none;
-    width: 60px;
+
     text-align: center;
 
 }
 
-.weather-report h1 {
+
+.weather-report :is(h1) {
     text-align: center;
     font-size: 50px;
 }
 
-.dayweather h3 {
-    font-size: 15px;
+.h36weather {
+    height: 70%;
+    overflow-y: scroll;
+    width: 90%;
+
+    border-radius: 15px;
 }
+
+
 
 hr {
     width: 90%;
@@ -51,20 +82,31 @@ hr {
 
 ::-webkit-scrollbar {
     height: 5px;
+    width: 0;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: #fff;
+    border-radius: 15px;
 }
 
 .day {
+    background-color: rgb(255, 255, 255, 0.5);
     display: flex;
     padding: 5px;
-
+    margin: 5px;
+    border-radius: 15px;
     align-items: center;
 }
 
 .day svg {
+
     width: 25px;
     height: 25px;
+}
+
+.day3weather {
+    border-radius: 15px;
+    padding-bottom: 10px;
+    background-color: #D3D3D3;
 }
