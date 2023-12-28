@@ -36,10 +36,16 @@ body {
 #location {
   font-size: 40px;
   border: none;
-  width: 150px;
+  width: auto;
 
   outline: none;
   margin-bottom: 10px;
+}
+
+@media(max-width:800px) {
+  #location {
+    width: 100%;
+  }
 }
 
 .location option {
