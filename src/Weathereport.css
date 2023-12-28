@@ -37,6 +37,7 @@
     color: #fff;
     flex-direction: column;
     align-items: center;
+    border-radius: 15px;
     position: sticky;
     top: 0;
     z-index: 10;

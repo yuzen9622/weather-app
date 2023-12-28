@@ -141,3 +141,13 @@ i {
   align-items: center;
   margin-bottom: 20px;
 }
+
+.location .select {
+  display: flex;
+
+}
+
+.select select {
+  color: black;
+  background-color: #fff;
+}
