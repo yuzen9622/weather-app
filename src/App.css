@@ -35,22 +35,14 @@ body {
 }
 
 #location {
-  font-size: 40px;
+  font-size: 30px;
   border: none;
   width: 50%;
   outline: none;
   margin-bottom: 10px;
 }
 
-@media(max-width:800px) {
-  #location {
-    font-size: 30px;
-  }
 
-  #secondSelect {
-    font-size: 20px;
-  }
-}
 
 .location option {
 
