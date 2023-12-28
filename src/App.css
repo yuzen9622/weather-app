@@ -44,7 +44,11 @@ body {
 
 @media(max-width:800px) {
   #location {
-    width: 100%;
+    font-size: 30px;
+  }
+
+  #secondSelect {
+    font-size: 20px;
   }
 }
 
@@ -150,7 +154,8 @@ i {
 
 .location .select {
   display: flex;
-
+  width: 100%;
+  justify-content: center;
 }
 
 .select select {
