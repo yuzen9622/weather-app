@@ -29,7 +29,7 @@ body {
   outline: none;
   margin-bottom: 10px;
   font-size: 30px;
-  width: 40%;
+  width: 50%;
   border: none;
 
 }
@@ -37,7 +37,7 @@ body {
 #location {
   font-size: 30px;
   border: none;
-  width: 60%;
+  width: 50%;
   outline: none;
   margin-bottom: 10px;
 }
