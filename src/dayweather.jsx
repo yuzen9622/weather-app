@@ -3,6 +3,13 @@ import './dayweather.css'
 import DayWeatherIcon from './dayweathericon';
 const Dayweather = ({ enlocation }) => {
     const [dayweather, Setdayweather] = useState([]);
+
+    function getMoment(date) {
+        var time = new Date(date);
+        time = time.getHours();
+        return (time > 12) ? "night" : "day"
+    }
+
     function getdayapi(location) {
         const hourweather = []
         const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationName=${location}`;
@@ -14,14 +21,15 @@ const Dayweather = ({ enlocation }) => {
                     if ((imgstatue - 10) < 0) {
                         imgstatue = "0" + imgstatue;
                     }
-
+                    var moment = getMoment(data.records.location[0].weatherElement[4].time[i].startTime);
                     hourweather.push({
                         time: data.records.location[0].weatherElement[4].time[i].startTime,
                         maxtmp: data.records.location[0].weatherElement[4].time[i].parameter.parameterName,
                         mintmp: data.records.location[0].weatherElement[2].time[i].parameter.parameterName,
-                        img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/${imgstatue}.svg`,
+                        img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/${moment}/${imgstatue}.svg`,
+                        rain: data.records.location[0].weatherElement[1].time[i].parameter.parameterName,
 
-                        statue: data.records.location[0].weatherElement[0].time[i].parameter.parameterName
+                        statue: data.records.location[0].weatherElement[3].time[i].parameter.parameterName
                     })
 
                 }
@@ -73,8 +81,9 @@ const Dayweather = ({ enlocation }) => {
                     <div className='day-hour' >
                         <p>{formattime(weather.time)}</p>
                         <img src={weather.img} alt="" />
+                        <p><i class="fa-solid fa-umbrella"></i>:{weather.rain}%</p>
                         <p>{weather.statue}</p>
-                        <p>{weather.maxtmp}° {weather.mintmp}°</p>
+                        <p> {weather.mintmp}-{weather.maxtmp}°C</p>
                     </div>
 
                 </div>

@@ -11,7 +11,7 @@
 }
 
 .weather-report {
-
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,6 +49,10 @@ h2,
 h1 {
     background-color: #fff;
     text-align: center;
+}
+
+.h36weather :first-child .day p {
+    width: 100px;
 }
 
 .day p {
@@ -96,6 +100,7 @@ hr {
     display: flex;
     padding: 5px;
     margin: 5px;
+
     border-radius: 15px;
     align-items: center;
 }

@@ -158,8 +158,11 @@ function WeatherApp() {
         var t = 0
 
         var starttime = formatDate(new Date());
-        var endtime = data.records.locations[0].location[0].weatherElement[3].time[1].dataTime
-        if (Date.parse(starttime).valueOf() > Date.parse(endtime).valueOf()) {
+        var endtime = data.records.locations[0].location[0].weatherElement[3].time[1].dataTime;
+        var nowtime = new Date().getHours();
+        var updatetime = new Date(data.records.locations[0].location[0].weatherElement[3].time[0].dataTime).getHours();
+
+        if (Date.parse(starttime).valueOf() > Date.parse(endtime).valueOf() || updatetime + 2 >= nowtime) {
           t = 1;
         }
         var datatime = data.records.locations[0].location[0].weatherElement[2].time[t].dataTime;

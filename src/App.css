@@ -29,7 +29,7 @@ body {
   outline: none;
   margin-bottom: 10px;
   font-size: 30px;
-  width: 50%;
+  width: 40%;
   border: none;
 
 }
@@ -37,7 +37,7 @@ body {
 #location {
   font-size: 30px;
   border: none;
-  width: 50%;
+  width: 60%;
   outline: none;
   margin-bottom: 10px;
 }
@@ -54,10 +54,14 @@ body {
   color: rgb(51, 51, 51, 0.5);
 }
 
+.location:first-child p {
+  color: black;
+}
+
 .card {
   background-color: rgb(255, 255, 255, 0.8);
   width: 300px;
-
+  border-radius: 15px;
 
   display: flex;
   box-shadow: 5px 5px 5px #725c5ca7;
@@ -88,19 +92,12 @@ button {
   background-color: transparent;
 }
 
-button:hover {
+
+button:active {
   background-color: #333;
 
   i {
     color: #fff;
-  }
-}
-
-button:active {
-  background-color: #fff;
-
-  i {
-    color: #333;
     transform: rotate(360deg);
   }
 

@@ -5,24 +5,10 @@ const Threehour = ({ location, town }) => {
 
     const [weather, setWeather] = useState([]);
 
-    function padTo2Digits(num) {
-        return num.toString().padStart(2, '0');
-    }
-
-    function formatDate(date) {
-        return (
-            [
-                date.getFullYear(),
-                padTo2Digits(date.getMonth() + 1),
-                padTo2Digits(date.getDate()),
-            ].join('-') +
-            ' ' +
-            [
-                padTo2Digits(date.getHours()),
-                padTo2Digits(date.getMinutes()),
-                padTo2Digits(date.getSeconds()),
-            ].join(':')
-        );
+    function getMoment(date) {
+        var time = new Date(date);
+        time = time.getHours();
+        return (time > 12) ? "night" : "day"
     }
 
     const gethourweather = (location, town) => {
@@ -35,12 +21,12 @@ const Threehour = ({ location, town }) => {
                 var weather = [];
                 console.log(data.records.locations[0].location[0].weatherElement[3].time[0].elementValue[0].value)
                 for (var i = t; i < 12; i++) {
-
+                    var moment = getMoment(data.records.locations[0].location[0].weatherElement[3].time[i].dataTime)
                     weather.push({
 
                         temputure: data.records.locations[0].location[0].weatherElement[3].time[i].elementValue[0].value,
                         AT: data.records.locations[0].location[0].weatherElement[2].time[i].elementValue[0].value,
-                        img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/${data.records.locations[0].location[0].weatherElement[1].time[i].elementValue[1].value}.svg`,
+                        img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/${moment}/${data.records.locations[0].location[0].weatherElement[1].time[i].elementValue[1].value}.svg`,
                         statue: data.records.locations[0].location[0].weatherElement[1].time[i].elementValue[0].value + "  " + data.records.locations[0].location[0].weatherElement[5].time[i].elementValue[1].value,
                         time: data.records.locations[0].location[0].weatherElement[3].time[i].dataTime
                     })
@@ -67,6 +53,7 @@ const Threehour = ({ location, town }) => {
                         <p>{new Intl.DateTimeFormat('zh-TW', {
                             hour: 'numeric',
                             minute: 'numeric',
+
                         }).format(new Date(weather.time))}</p>
                         <img src={weather.img} alt="" />
                         <p>{weather.statue}</p>
