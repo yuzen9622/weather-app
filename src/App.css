@@ -62,7 +62,7 @@ body {
   background-color: rgb(255, 255, 255, 0.8);
   width: 300px;
   border-radius: 15px;
-
+  height: 600px;
   display: flex;
   box-shadow: 5px 5px 5px #725c5ca7;
   flex-direction: column;
@@ -132,7 +132,7 @@ i {
 
 .wind-card {
   width: 100%;
-
+  height: 80%;
 }
 
 .wind {
@@ -150,4 +150,9 @@ i {
 .select select {
   color: black;
   background-color: #fff;
+}
+
+.card .h36weather {
+  height: 50%;
+  width: 100%;
 }

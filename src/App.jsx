@@ -1,13 +1,14 @@
 
 import './App.css';
-
 import Weathereport from './Weathereport';
 import YourComponent from './time';
 import rainimg from './濕度.png';
 import windimg from './wind-removebg-preview.png'
 import { useState, useEffect } from 'react';
-import WeatherIcon from './weathericon';
+
+import Dayweather from './dayweather';
 import sunriseAndSunsetData from './sunrise-sunset.json';
+import Threehour from './hour3';
 function WeatherApp() {
   const [locationname, setlocaton] = useState([]);
   const [Stations, Setstation] = useState('');
@@ -276,11 +277,34 @@ function WeatherApp() {
             <img src={rainimg} alt="wind-pic" />
             <p>{weather.rain}%</p>
           </div>
+          <div className="h36weather">
+            <div className="day3weather">
+              <div className="title">
+                <h3>{Town}逐3小時天氣</h3>
+              </div>
+              <div className="day-weather">
+                <Threehour location={arrray} town={Town} twlocation={locations} />
+              </div>
+            </div>
+
+            <div className="dayweather">
+              <div className="title">
+                <h3>36小時天氣預報</h3>
+
+              </div>
+              <div className="day-weather">
+                <Dayweather enlocation={locations} />
+              </div>
+
+            </div>
+
+          </div>
           <div className="location"><p>更新時間:{weather.updateT}</p></div>
           <button type='button' onClick={handle}><i class="fa-solid fa-rotate-right"></i></button>
         </div>
 
       </div >
+
       <Weathereport locationid={arrray} twlocation={locations} townlocation={Town} />
     </>
   )

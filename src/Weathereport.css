@@ -116,3 +116,20 @@ hr {
     padding-bottom: 10px;
     background-color: #D3D3D3;
 }
+
+@media (max-width:500px) {
+    .weather-report {
+        display: none;
+    }
+}
+
+@media (min-width:501px) {
+    .card .h36weather {
+        display: none;
+    }
+
+    .card {
+        height: auto;
+    }
+
+}

@@ -20,7 +20,7 @@ const Weathereport = ({ locationid, twlocation, townlocation }) => {
                         <h3>{townlocation}逐3小時天氣</h3>
                     </div>
                     <div className="day-weather">
-                        <Threehour location={locationid} town={townlocation} />
+                        <Threehour location={locationid} town={townlocation} twlocation={twlocation} />
                     </div>
                 </div>
 
