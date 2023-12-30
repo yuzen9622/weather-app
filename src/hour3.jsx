@@ -10,6 +10,12 @@ const Threehour = ({ location, town }) => {
         time = time.getHours();
         return (time > 12) ? "night" : "day"
     }
+    function getday(date) {
+        var day = new Date(date).getDay();
+        var day_list = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        return day_list[day];
+    }
+
 
     const gethourweather = (location, town) => {
         var url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationId=${location}&locationName=${town}`;
@@ -50,7 +56,7 @@ const Threehour = ({ location, town }) => {
                 <div className="day" key={key}>
 
                     <div className='day-hour' >
-                        <p>{new Intl.DateTimeFormat('zh-TW', {
+                        <p>{getday(weather.time)} {new Intl.DateTimeFormat('zh-TW', {
                             hour: 'numeric',
                             minute: 'numeric',
 
