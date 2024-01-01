@@ -7,7 +7,7 @@ import windimg from './wind-removebg-preview.png'
 import { useState, useEffect } from 'react';
 
 import Dayweather from './dayweather';
-import sunriseAndSunsetData from './sunrise-sunset.json';
+
 import Threehour from './hour3';
 function WeatherApp() {
   const [locationname, setlocaton] = useState([]);
@@ -16,45 +16,15 @@ function WeatherApp() {
   const [arrray, setarray] = useState('F-D0047-061');
   const [Town, setTown] = useState('南港區');
 
-  const getMoment = (locationName) => {
-    // STEP 2：從日出日落時間中找出符合的地區
-    const location = sunriseAndSunsetData.find(
-      (data) => data.locationName === locationName
-    );
+  function getMoment(date) {
+    var time = new Date(date);
+    time = time.getHours();
+    console.log(time)
+    return (time > 12) ? "night" : "day"
 
-    // STEP 3：找不到的話則回傳 null
-    if (!location) return null;
+  }
 
-    // STEP 4：取得當前時間
-    const now = new Date();
 
-    // STEP 5：將當前時間以 "2019-10-08" 的時間格式呈現
-    const nowDate = Intl.DateTimeFormat('zh-TW', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    })
-      .format(now)
-      .replace(/\//g, '-');
-
-    // STEP 6：從該地區中找到對應的日期
-    const locationDate =
-      location.time && location.time.find((time) => time.dataTime === nowDate);
-
-    // STEP 7：將日出日落以及當前時間轉成時間戳記（TimeStamp）
-    const sunriseTimestamp = new Date(
-      `${locationDate.dataTime} ${locationDate.sunrise}`
-    ).getTime();
-    const sunsetTimestamp = new Date(
-      `${locationDate.dataTime} ${locationDate.sunset}`
-    ).getTime();
-    const nowTimeStamp = now.getTime();
-
-    // STEP 8：若當前時間介於日出和日落中間，則表示為白天，否則為晚上
-    return sunriseTimestamp <= nowTimeStamp && nowTimeStamp <= sunsetTimestamp
-      ? 'day'
-      : 'night';
-  };
   const [weather, setWeather] = useState({
     temputure: 0,
     AT: 0,
@@ -86,11 +56,11 @@ function WeatherApp() {
   const gettown = (e) => {
     var selectedValue = e.target.value;
     setTown(locationname[selectedValue].loca)
-    getownweather(arrray, locationname[selectedValue].loca, moment)
+    getownweather(arrray, locationname[selectedValue].loca)
 
   }
   const handle = () => {
-    getownweather(arrray, Town, moment)
+    getownweather(arrray, Town)
   }
   const forweather = (location) => {
     var locaurl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationName=${location}`
@@ -123,7 +93,7 @@ function WeatherApp() {
             value: i
           })
         }
-        getownweather(locations, location[0].loca, moment)
+        getownweather(locations, location[0].loca)
         setTown(location[0].loca)
         setlocaton(location)
 
@@ -151,7 +121,7 @@ function WeatherApp() {
   }
 
 
-  const getownweather = (location, town, moment) => {
+  const getownweather = (location, town) => {
     const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationId=${location}&locationName=${town}`;
 
     fetch(url).then((res) => res.json())
@@ -163,7 +133,7 @@ function WeatherApp() {
         var nowtime = new Date().getHours();
         var updatetime = new Date(data.records.locations[0].location[0].weatherElement[3].time[0].dataTime).getHours();
 
-        if (Date.parse(starttime).valueOf() > Date.parse(endtime).valueOf() || updatetime + 2 >= nowtime) {
+        if (Date.parse(starttime).valueOf() > Date.parse(endtime).valueOf() || nowtime + 2 >= updatetime) {
           t = 1;
         }
         var datatime = data.records.locations[0].location[0].weatherElement[2].time[t].dataTime;
@@ -174,7 +144,7 @@ function WeatherApp() {
           AT: data.records.locations[0].location[0].weatherElement[2].time[t].elementValue[0].value,
           wind: data.records.locations[0].location[0].weatherElement[8].time[t].elementValue[0].value,
           rain: data.records.locations[0].location[0].weatherElement[4].time[t].elementValue[0].value,
-          img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/${moment}/${data.records.locations[0].location[0].weatherElement[1].time[t].elementValue[1].value}.svg`,
+          img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/${getMoment(data.records.locations[0].location[0].weatherElement[2].time[t].dataTime)}/${data.records.locations[0].location[0].weatherElement[1].time[t].elementValue[1].value}.svg`,
           statue: data.records.locations[0].location[0].weatherElement[1].time[t].elementValue[0].value,
           updateT: datatimes
         })
@@ -182,11 +152,11 @@ function WeatherApp() {
       })
   }
 
-  const moment = getMoment(locations);
+
   useEffect(() => {
     forweather(item[0].where)
     getown(arrray)
-    getownweather(arrray, Town, moment)
+    getownweather(arrray, Town)
   }, [])
 
   const item = [
