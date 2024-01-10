@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# My first react project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這個專案是用react做的 並且串接氣象局的API
 
-## Available Scripts
+## 使用語言
 
-In the project directory, you can run:
+React: 這個網站是使用React框架搭建的，這讓我們能夠輕鬆地構建交互式的用戶介面。
 
-### `npm start`
+JavaScript & CSS: 使用標準的前端語言進行開發，使得網站在各種瀏覽器中都能正確運行。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 功能特色
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 即時天氣資訊： 介紹你是如何整合並顯示即時的氣象資訊，包括溫度、濕度、風速等。(但應氣象局資料無法每小時更新，所以本功能是以3小時更新
 
-### `npm test`
+### 預報功能： 可以提供逐三小時氣象預報以及當日氣象狀況，降雨機率、最高最低溫、氣象目前裝況
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 位置地理:包含全台各地區澎金馬，以及各縣市區域
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 數據來源
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+本專案參考:[Day 13 - 即時天氣] 建立一個即時天氣 App - 前置準備 https://ithelp.ithome.com.tw/articles/10222662
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+API來源:氣象局提供的公共資料
 
-### `npm run eject`
+## 使用說明
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+在首頁選擇您要查詢的縣市以及地區
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+即時天氣資訊將顯示在畫面上。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+預報頁面可以以滾輪顯示，查看未來幾天的天氣預報。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 響應式設計
 
-## Learn More
+行動裝置上為直式顯示不須特地移動螢幕去觀看完整的網頁
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 回饋
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+有任何意見都可以反映給我，我會盡可能地去讓它更人性化
 
-### Code Splitting
+### 聯絡
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Email:oscar48079@gmail.com
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
