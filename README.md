@@ -1,4 +1,4 @@
-# My first react project
+# weather app
 
 這個專案是用react做的 並且串接氣象局的API
 
