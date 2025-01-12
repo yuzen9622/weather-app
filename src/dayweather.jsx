@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import "./dayweather.css";
-
+import { api_url, getMoment } from "./service";
 const Dayweather = ({ enlocation }) => {
   const [dayweather, Setdayweather] = useState([]);
 
-  function getMoment(date) {
-    var time = new Date(date);
-    time = time.getHours();
-    return time > 12 ? "night" : "day";
-  }
-
   function getdayapi(location) {
     const hourweather = [];
-    const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationName=${location}`;
+    const url = `${api_url}/F-C0032-001?Authorization=CWA-751D24F0-D79C-41B7-80EF-94428EC62091&locationName=${location}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

@@ -6,6 +6,13 @@ import windimg from "./wind-removebg-preview.png";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Threehour from "./hour3";
 import Dayweather from "./dayweather";
+import {
+  api_url,
+  formatDate,
+  getDateToISO,
+  getMoment,
+  padTo2Digits,
+} from "./service";
 const item = [
   { locaName: "臺北市", locaId: "F-D0047-061", town: "" },
   { locaName: "新北市", locaId: "F-D0047-069", town: "" },
@@ -50,15 +57,8 @@ function WeatherApp() {
   const locationSelect = useRef(null);
   const TownSelect = useRef(null);
 
-  function getMoment(date) {
-    var time = new Date(date);
-    time = time.getHours();
-
-    return time > 12 ? "night" : "day";
-  }
-
   const forweather = (location) => {
-    var locaurl = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${process.env.REACT_APP_API_KEY}CWA-561CA377-6CE3-41EB-8FDE-7F87EE03D8C5&locationName=${location}`;
+    var locaurl = `${api_url}/F-C0032-001?Authorization=${process.env.REACT_APP_API_KEY}CWA-561CA377-6CE3-41EB-8FDE-7F87EE03D8C5&locationName=${location}`;
     fetch(locaurl)
       .then((res) => res.json())
       .then((data) => {
@@ -83,7 +83,7 @@ function WeatherApp() {
 
   const getTown = async () => {
     try {
-      const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location.locaId}`;
+      const url = `${api_url}/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location.locaId}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -102,45 +102,12 @@ function WeatherApp() {
       console.error(error);
     }
   };
-  function padTo2Digits(num) {
-    return num.toString().padStart(2, "0");
-  }
-
-  function formatDate(date) {
-    if (!date || date === "") return "";
-    date = new Date(date);
-
-    return (
-      [
-        date.getFullYear(),
-        padTo2Digits(date.getMonth() + 1),
-        padTo2Digits(date.getDate()),
-      ].join("-") +
-      " " +
-      [
-        padTo2Digits(date.getHours()),
-        padTo2Digits(date.getMinutes()),
-        padTo2Digits(date.getSeconds()),
-      ].join(":")
-    );
-  }
-  function getDateToISO() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从 0 开始，需要加 1
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-
-    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-  }
 
   const getTownWeather = async () => {
     if (!location.town) return;
     try {
       const time = getDateToISO();
-      const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location.locaId}&locationName=${location.town}&sort=time&timeFrom=${time}`;
+      const url = `${api_url}/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location.locaId}&locationName=${location.town}&sort=time&timeFrom=${time}`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.success === "true") {
@@ -197,28 +164,14 @@ function WeatherApp() {
         <div className="location">
           <div className="select">
             <select id="location" ref={locationSelect}>
-              <option value={0}>臺北市</option>
-              <option value={1}>新北市</option>
-              <option value={2}>基隆市</option>
-              <option value={3}>花蓮縣</option>
-              <option value={4}>宜蘭縣</option>
-              <option value={5}>金門縣</option>
-              <option value={6}>臺南市</option>
-              <option value={7}>新竹縣</option>
-              <option value={8}>臺中市</option>
-              <option value={9}>高雄市</option>
-              <option value={10}>屏東縣</option>
-              <option value={11}>嘉義市</option>
-              <option value={12}>嘉義縣</option>
-              <option value={13}>臺東縣</option>
-              <option value={14}>桃園市</option>
-              <option value={15}>南投縣</option>
-              <option value={16}>彰化縣</option>
-              <option value={17}>新竹市</option>
-              <option value={18}>苗栗縣</option>
-              <option value={19}>雲林縣</option>
-              <option value={20}>澎湖縣</option>
-              <option value={21}>連江縣</option>
+              {item.map((locationItem, key) => (
+                <option
+                  value={key}
+                  selected={locationItem === location.locaName}
+                >
+                  {locationItem.locaName}
+                </option>
+              ))}
             </select>
             <select name="" id="secondSelect" ref={TownSelect}>
               {Town &&

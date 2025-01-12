@@ -1,25 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { api_url, getDateToISO, getMoment } from "./service";
 const Threehour = ({ location, town, twlocation }) => {
   const [weather, setWeather] = useState([]);
 
-  function getMoment(date) {
-    var time = new Date(date);
-    time = time.getHours();
-
-    return time > 12 ? "night" : "day";
-  }
-  function getDateToISO() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从 0 开始，需要加 1
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-
-    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-  }
   function getday(date) {
     var day = new Date(date).getDay();
     var day_list = [
@@ -40,7 +23,7 @@ const Threehour = ({ location, town, twlocation }) => {
     if (!town) return;
     try {
       const isoTime = getDateToISO();
-      const url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location}&locationName=${town}&sort=time&timeFrom=${isoTime}`;
+      const url = `${api_url}/F-D0047-093?Authorization=${process.env.REACT_APP_API_KEY}&locationId=${location}&locationName=${town}&sort=time&timeFrom=${isoTime}`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.success === "true") {
