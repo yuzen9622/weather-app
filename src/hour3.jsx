@@ -30,10 +30,12 @@ const Threehour = ({ location, town, twlocation }) => {
         const weatherDatas = data.records.Locations[0].Location.find(
           (item) => item.LocationName === town
         );
-        const moment = getMoment();
 
         const weathers = [];
         for (let i = 0; i < 13; i++) {
+          const moment = getMoment(
+            weatherDatas.WeatherElement[0].Time[i].DataTime
+          );
           const iconNumber = padTo2Digits(
             weatherDatas.WeatherElement[8].Time[i].ElementValue[0].WeatherCode
           );
@@ -48,7 +50,8 @@ const Threehour = ({ location, town, twlocation }) => {
             rain: weatherDatas.WeatherElement[2].Time[i].ElementValue[0]
               .RelativeHumidity,
             statue:
-              weatherDatas.WeatherElement[8].Time[i].ElementValue[0].Weather,
+              weatherDatas.WeatherElement[4].Time[i].ElementValue[0]
+                .ComfortIndexDescription,
             img: `https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/${moment}/${iconNumber}.svg `,
             time: weatherDatas.WeatherElement[0].Time[i].DataTime,
           });

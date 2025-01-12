@@ -210,7 +210,7 @@ function WeatherApp() {
           <div className="h36weather">
             <div className="day3weather">
               <div className="title">
-                <h3>{location.town}逐3小時天氣</h3>
+                <h3>{location.town}逐1小時天氣</h3>
               </div>
               <div className="day-weather">
                 <Threehour
